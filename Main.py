@@ -31,6 +31,12 @@ def getTeacherSchedule(teacher_ID):
    # CREATE VIEW teacherClasses AS SELECT info.TeacherID, Period, CourseName, RoomNumber, ClassID, Name FROM (SELECT TeacherID, Period, CourseName, RoomNumber, ClassID FROM Classes INNER JOIN Courses ON Classes.CourseID = Courses.CourseID) as info INNER JOIN Teachers ON Teachers.TeacherID = info.TeacherID;
    return executeStatement(createConnection(username, password), statement)
 
+def getStudentGrades(student_ID):
+   statement = "SELECT * FROM getGrades WHERE studentID=" + student_ID + ""
+   # CREATE VIEW getGrades AS SELECT info.TeacherID, Period, CourseName, RoomNumber, ClassID, Name FROM (SELECT TeacherID, Period, CourseName, RoomNumber, ClassID FROM Classes INNER JOIN Courses ON Classes.CourseID = Courses.CourseID) as info INNER JOIN Teachers ON Teachers.TeacherID = info.TeacherID;
+   return executeStatement(createConnection(username, password), statement)
+
+
 
 # anti owen code
 username = getpass.getpass("Enter your username for the database: ")

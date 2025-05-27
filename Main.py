@@ -36,17 +36,7 @@ def getStudentGrades(student_ID):
    # CREATE VIEW getGrades AS SELECT info.TeacherID, Period, CourseName, RoomNumber, ClassID, Name FROM (SELECT TeacherID, Period, CourseName, RoomNumber, ClassID FROM Classes INNER JOIN Courses ON Classes.CourseID = Courses.CourseID) as info INNER JOIN Teachers ON Teachers.TeacherID = info.TeacherID;
    return executeStatement(createConnection(username, password), statement)
 
-
-
-# anti owen code
-username = getpass.getpass("Enter your username for the database: ")
-password = getpass.getpass("What is your password for the database: ")
-os.system('cls')
-answer = input("Are you a student or a teacher? ")
-answer = answer.lower()
-
-if answer == "student" or answer == "s":
-   student_ID = input("Enter your studentID: ")
+def printStudentSchedule():
    studentInfo = getStudentSchedule(student_ID)
    for info in studentInfo:
       teacherName = info[4]
@@ -59,8 +49,7 @@ if answer == "student" or answer == "s":
       print("Teacher: " + teacherName)
       print()
 
-elif answer == "teacher" or answer == "t":
-   teacher_ID = input("Enter your teacherID: ")
+def printTeacherSchedule():
    teacherInfo = getTeacherSchedule(teacher_ID)
    teacherName = teacherInfo[0][5]
    os.system('cls')
@@ -75,3 +64,59 @@ elif answer == "teacher" or answer == "t":
       print("Room Number: " + roomNumber)
       print("ClassID: " + str(classID))
       print()
+
+def something(ID):
+   return
+
+
+# anti owen code
+username = getpass.getpass("Enter your username for the database: ")
+password = getpass.getpass("What is your password for the database: ")
+os.system('cls')
+answer = input("Are you a student or a teacher? ")
+answer = answer.lower()
+
+if answer == "student" or answer == "s":
+   student_ID = input("Enter your studentID: ")
+   while True:
+      os.system('cls')
+      print("What would you like to do?")
+      print("1) See your schedule")
+      print("2) See your grades")
+      print("3) Quit ")
+      ans = input()
+      os.system('cls')
+      if ans == "1":
+         printStudentSchedule()
+         input("Enter anything to return")
+      elif ans == "2":
+         print("C")
+      elif ans == "3":
+         print("GOODBYE !!!")
+         break
+
+
+elif answer == "teacher" or answer == "t":
+   teacher_ID = input("Enter your teacherID: ")
+   while True:
+      os.system('cls')
+      print("What would you like to do?")
+      print("1) See your schedule")
+      print("2) Check your rosters/classes")
+      print("3) Check student grades")
+      print("4) Add an assignment")
+      print("5) Edit grades")
+      print("6) Quit ")
+      ans = input()
+      os.system('cls')
+      if ans == "1":
+         printTeacherSchedule()
+         input("Enter anything to return")
+      elif ans == "2":
+         print("Cool")
+      elif ans == "3":
+         print("GOODBYE !!!")
+         break
+
+elif answer == "ADMIN" or answer == "admin":
+   print("Hello Admin")
